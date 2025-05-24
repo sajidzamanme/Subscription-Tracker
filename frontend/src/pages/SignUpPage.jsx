@@ -1,0 +1,99 @@
+import { Link } from "react-router";
+import CustomBtn from "../components/CustomBtn";
+import { useState } from "react";
+import axios from "axios";
+
+const SignUpPage = () => {
+  const [formData, setFormData] = useState({
+    name: "",
+    email: "",
+    password: "",
+  });
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      const response = await axios.post(
+        "http://localhost:5500/api/v1/auth/sign-up",
+        formData
+      );
+      console.log(response);
+      setFormData({ name: "", email: "", password: "" });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  return (
+    <div className="h-full w-full flex flex-col justify-center items-center">
+      <div className="bg-white flex flex-col items-center justify-start">
+        <form
+          onSubmit={handleSubmit}
+          className="flex flex-col gap-4 p-6 items-start justify-start"
+        >
+          <h1 className="self-center text-3xl font-semibold py-2">
+            Create a Account
+          </h1>
+
+          <div className="w-[20rem] flex flex-col gap-2">
+            <input
+              type="text"
+              value={formData.name}
+              className="border h-[3rem] rounded-md pl-3"
+              placeholder="Enter Your Name"
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  name: e.target.value,
+                }))
+              }
+            />
+            <input
+              type="email"
+              value={formData.email}
+              className="border h-[3rem] rounded-md pl-3"
+              placeholder="Enter Your Email"
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  email: e.target.value,
+                }))
+              }
+            />
+            <input
+              type="password"
+              value={formData.password}
+              className="border h-[3rem] rounded-md pl-3"
+              placeholder="Enter a Password"
+              onChange={(e) =>
+                setFormData((prevState) => ({
+                  ...prevState,
+                  password: e.target.value,
+                }))
+              }
+            />
+          </div>
+
+          <div className="w-full flex flex-col gap-2 justify-center items-center">
+            <CustomBtn
+              label="Create"
+              bgCol="bg-indigo-300"
+              padding="px-8 py-2.5"
+            />
+            <h1 className="text-sm">
+              Or,{" "}
+              <Link
+                to={"/login"}
+                className="text-blue-700 hover:text-blue-900 font-medium"
+              >
+                Login Here
+              </Link>
+            </h1>
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
+
+export default SignUpPage;
