@@ -2,8 +2,11 @@ import { useState } from "react";
 import CustomBtn from "../components/CustomBtn";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import useLoginState from "../stores/useLoginState";
 
 const LogInPage = () => {
+  const { setLoggedIn } = useLoginState();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,8 +21,8 @@ const LogInPage = () => {
         "http://localhost:5500/api/v1/auth/sign-in",
         formData
       );
-      console.log(response);
       if (response.data.success) {
+        setLoggedIn(true);
         navigate("/");
       }
     } catch (error) {

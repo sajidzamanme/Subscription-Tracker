@@ -1,14 +1,15 @@
 const CustomBtn = ({
   label = "Button",
-  bgCol = "bg-white",
-  textCol = "text-black",
-  padding = "p-2",
+  classList = null,
   handleClick = () => {},
 }) => {
   return (
     <button
       onClick={handleClick}
-      className={`${bgCol} ${textCol} ${padding} rounded-md text-sm font-medium`}
+      className={`${
+        classList ||
+        "bg-white text-black p-2 rounded-md text-sm hover:bg-gray-300"
+      }`}
     >
       {label}
     </button>
