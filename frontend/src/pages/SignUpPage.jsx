@@ -1,4 +1,4 @@
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 import CustomBtn from "../components/CustomBtn";
 import { useState } from "react";
 import axios from "axios";
@@ -10,6 +10,8 @@ const SignUpPage = () => {
     password: "",
   });
 
+  const navigate = useNavigate();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -19,6 +21,7 @@ const SignUpPage = () => {
       );
       console.log(response);
       setFormData({ name: "", email: "", password: "" });
+      navigate("/login");
     } catch (error) {
       console.log(error);
     }
@@ -77,8 +80,9 @@ const SignUpPage = () => {
           <div className="w-full flex flex-col gap-2 justify-center items-center">
             <CustomBtn
               label="Create"
-              bgCol="bg-indigo-300"
-              padding="px-8 py-2.5"
+              classList={
+                "bg-violet-600 text-white px-6 py-2.5 font-semibold rounded-md text-sm hover:bg-violet-500"
+              }
             />
             <h1 className="text-sm">
               Or,{" "}

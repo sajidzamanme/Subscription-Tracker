@@ -2,8 +2,13 @@ import { useState } from "react";
 import CustomBtn from "../components/CustomBtn";
 import { Link, useNavigate } from "react-router";
 import axios from "axios";
+import useLoginState from "../stores/useLoginState";
+import useUserStore from "../stores/useUserStore";
 
 const LogInPage = () => {
+  const { setLoggedIn } = useLoginState();
+  const { setUser } = useUserStore();
+
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -18,8 +23,10 @@ const LogInPage = () => {
         "http://localhost:5500/api/v1/auth/sign-in",
         formData
       );
-      console.log(response);
+      const user = response.data.data.user;
       if (response.data.success) {
+        setUser({name: user.name, email: user.email});
+        setLoggedIn(true);
         navigate("/");
       }
     } catch (error) {
@@ -68,8 +75,9 @@ const LogInPage = () => {
           <div className="w-full flex flex-col gap-2 justify-center items-center">
             <CustomBtn
               label="Continue"
-              bgCol="bg-indigo-300"
-              padding="px-8 py-2.5"
+              classList={
+                "bg-violet-600 text-white px-6 py-2.5 font-semibold rounded-md text-sm hover:bg-violet-500"
+              }
             />
             <h1 className="text-sm">
               Or,{" "}
