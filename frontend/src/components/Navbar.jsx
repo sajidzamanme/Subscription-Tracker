@@ -9,7 +9,7 @@ const Navbar = () => {
   const navigate = useNavigate();
   useEffect(() => {
     if (loggedIn) setButtonText("Logout");
-    else setButtonText("Signup/Login");
+    else setButtonText("Login");
   }, [loggedIn]);
 
   return (
@@ -24,9 +24,8 @@ const Navbar = () => {
           handleClick={() => {
             if (loggedIn) {
               setLoggedIn(false);
-            }
-            else {
-              navigate("/login")
+            } else {
+              navigate("/login");
             }
           }}
         />

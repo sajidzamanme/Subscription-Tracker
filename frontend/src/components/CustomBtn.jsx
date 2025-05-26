@@ -8,7 +8,7 @@ const CustomBtn = ({
       onClick={handleClick}
       className={`${
         classList ||
-        "bg-white text-black p-2 rounded-md text-sm hover:bg-gray-300"
+        "min-w-[6.2rem] bg-white text-black p-2 rounded-md text-sm hover:bg-gray-300"
       }`}
     >
       {label}
