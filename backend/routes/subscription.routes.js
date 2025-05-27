@@ -15,7 +15,7 @@ subscriptionRouter.get("/:id", (req, res) => {
   res.send({ title: "GET subscription details" });
 });
 
-subscriptionRouter.post("/", authorize, createSubscription);
+subscriptionRouter.post("/", createSubscription); // add authorize middleware
 
 subscriptionRouter.put("/:id", (req, res) => {
   res.send({ title: "UPDATE subscription" });

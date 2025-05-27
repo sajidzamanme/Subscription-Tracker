@@ -8,7 +8,6 @@ const SubscriptionList = () => {
   return (
     <div className="w-full max-w-xl flex flex-col justify-start items-center gap-3">
       {subscriptions.map((sub) => {
-        console.log(sub);
         return (
           <div
             key={sub._id}
@@ -18,12 +17,12 @@ const SubscriptionList = () => {
             <h1 className="text-2xl text-white font-bold">{sub.name}</h1>
 
             <div className="w-[10rem] flex flex-col">
-              {/* Calculate Renewal */}
               <h2 className="text-white font-medium text-nowrap overflow-hidden">
                 Till Renewal:{" "}
                 {Math.floor(
                   (Date.parse(sub.renewalDate) - Date.now()) / MS_PER_DAY
-                )}
+                )}{" "}
+                days
               </h2>
               <h2 className="text-white font-medium text-nowrap overflow-hidden">
                 Price: {sub.price}TK

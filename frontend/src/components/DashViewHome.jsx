@@ -3,8 +3,7 @@ import useUserStore from "../stores/useUserStore";
 
 const DashViewHome = () => {
   const { user } = useUserStore();
-  const {subscriptions} = useSubscriptionsStore();
-  console.log(subscriptions);
+  const { subscriptions } = useSubscriptionsStore();
 
   return (
     <section
@@ -18,7 +17,7 @@ const DashViewHome = () => {
       </div>
 
       <div className="bg-[#405D72] rounded-lg p-2">
-        <h1 className="text-white font-semibold text-md text-center">
+        <h1 className="text-white font-medium text-md text-center">
           Subscriptions: {subscriptions.length}
         </h1>
       </div>
