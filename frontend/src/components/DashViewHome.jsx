@@ -19,7 +19,7 @@ const DashViewHome = () => {
 
       <div className="bg-[#405D72] rounded-lg p-2">
         <h1 className="text-white font-semibold text-md text-center">
-          Subscriptions: 10
+          Subscriptions: {subscriptions.length}
         </h1>
       </div>
     </section>
