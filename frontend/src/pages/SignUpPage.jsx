@@ -29,20 +29,21 @@ const SignUpPage = () => {
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
-      <div className="bg-white flex flex-col items-center justify-start">
+      <div className="bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
         <form
+          id="signupForm"
           onSubmit={handleSubmit}
-          className="flex flex-col gap-4 p-6 items-start justify-start"
+          className="flex flex-col gap-5 p-6 items-start justify-start"
         >
-          <h1 className="self-center text-3xl font-semibold py-2">
+          <h1 className="self-center text-[#405D72] text-3xl font-bold py-7">
             Create a Account
           </h1>
 
-          <div className="w-[20rem] flex flex-col gap-2">
+          <div className="w-[20rem] flex flex-col gap-3">
             <input
               type="text"
               value={formData.name}
-              className="border h-[3rem] rounded-md pl-3"
+              className="bg-[#FFF8F3] h-[3rem] rounded-md text-[#405D72] pl-3 shadow-sm placeholder:text-[#405D72]"
               placeholder="Enter Your Name"
               onChange={(e) =>
                 setFormData((prevState) => ({
@@ -54,7 +55,7 @@ const SignUpPage = () => {
             <input
               type="email"
               value={formData.email}
-              className="border h-[3rem] rounded-md pl-3"
+              className="bg-[#FFF8F3] h-[3rem] rounded-md text-[#405D72] pl-3 shadow-sm placeholder:text-[#405D72]"
               placeholder="Enter Your Email"
               onChange={(e) =>
                 setFormData((prevState) => ({
@@ -66,7 +67,7 @@ const SignUpPage = () => {
             <input
               type="password"
               value={formData.password}
-              className="border h-[3rem] rounded-md pl-3"
+              className="bg-[#FFF8F3] h-[3rem] rounded-md text-[#405D72] pl-3 shadow-sm placeholder:text-[#405D72]"
               placeholder="Enter a Password"
               onChange={(e) =>
                 setFormData((prevState) => ({
@@ -77,18 +78,18 @@ const SignUpPage = () => {
             />
           </div>
 
-          <div className="w-full flex flex-col gap-2 justify-center items-center">
+          <div className="w-full flex flex-col gap-2 justify-center items-center pb-8">
             <CustomBtn
               label="Create"
               classList={
-                "bg-violet-600 text-white px-6 py-2.5 font-semibold rounded-md text-sm hover:bg-violet-500"
+                "bg-[#FFF8F3] text-[#405D72] px-6 py-2.5 font-semibold rounded-md text-sm shadow-sm hover:bg-[#fddac3]"
               }
             />
             <h1 className="text-sm">
               Or,{" "}
               <Link
                 to={"/login"}
-                className="text-blue-700 hover:text-blue-900 font-medium"
+                className="text-[#405D72] hover:text-[#758694] font-medium"
               >
                 Login Here
               </Link>
