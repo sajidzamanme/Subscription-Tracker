@@ -31,11 +31,11 @@ export const getAllSubscription = async (req, res, next) => {
 
 export const getUserSubscription = async (req, res, next) => {
   try {
-    if (req.user.id !== req.params.id) {
-      const error = new Error("You are not the owner of this account");
-      error.statusCode = 401;
-      throw error;
-    }
+    // if (req.user.id !== req.params.id) {
+    //   const error = new Error("You are not the owner of this account");
+    //   error.statusCode = 401;
+    //   throw error;
+    // }
 
     const userSubscriptions = await Subscription.find({ user: req.params.id });
 

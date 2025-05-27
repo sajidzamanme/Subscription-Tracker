@@ -5,8 +5,8 @@ const WelcomeBox = () => {
   const navigate = useNavigate();
 
   return (
-    <>
-      <h1 className="max-w-lg text-5xl text-center font-semibold mt-32">
+    <section id="welcomeBox" className="h-full w-full flex flex-col justify-start items-center gap-6 mt-32">
+      <h1 className="max-w-lg text-5xl text-center font-semibold">
         Track All Your Subscriptions Easily With Us
       </h1>
       <CustomBtn
@@ -16,7 +16,7 @@ const WelcomeBox = () => {
         }
         handleClick={() => navigate("/signup")}
       />
-    </>
+    </section>
   );
 };
 
