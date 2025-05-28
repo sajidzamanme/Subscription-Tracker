@@ -3,13 +3,14 @@ import { useOutletContext } from "react-router";
 const MS_PER_DAY = 1000 * 60 * 60 * 24;
 
 const SubscriptionCard = ({ subscription }) => {
-  const { setShowModal, setModalContent } = useOutletContext();
+  const { setShowModal, setModalContent, setSelectedSub } = useOutletContext();
 
   return (
     <div
       className="w-full max-w-xl h-[6rem] flex flex-row justify-between items-center
           bg-[#758694] rounded-lg p-4"
       onClick={() => {
+        setSelectedSub(subscription);
         setModalContent("edit");
         setShowModal(true);
       }}
@@ -25,7 +26,7 @@ const SubscriptionCard = ({ subscription }) => {
           days
         </h2>
         <h2 className="text-white font-medium text-nowrap overflow-hidden">
-          Price: {subscription.price}TK
+          Price: {subscription.price} {subscription.currency}
         </h2>
         <h2 className="text-white font-medium text-nowrap overflow-hidden">
           Payment: {subscription.payment}
