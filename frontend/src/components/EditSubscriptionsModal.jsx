@@ -24,10 +24,13 @@ const EditSubscriptionsModal = ({ setShowModal, selectedSub }) => {
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.put(`${API}/subscriptions/${selectedSub._id}`, {
-        ...formData,
-        price: parseFloat(formData.price),
-      });
+      const response = await axios.put(
+        `${API}/subscriptions/${selectedSub._id}`,
+        {
+          ...formData,
+          price: parseFloat(formData.price),
+        }
+      );
 
       if (response.data.success) {
         setShowModal(false);

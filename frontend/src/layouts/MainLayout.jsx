@@ -4,6 +4,8 @@ import Modal from "../components/Modal";
 import AddSubsciptionsModal from "../components/AddSubsciptionsModal";
 import { useState } from "react";
 import EditSubscriptionsModal from "../components/EditSubscriptionsModal";
+import ClickMenuModal from "../components/ClickMenuModal";
+import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 const MainLayout = () => {
   const [showModal, setShowModal] = useState(false);
@@ -32,10 +34,31 @@ const MainLayout = () => {
                 }
               />
             )}
+            {modalContent === "clickMenu" && (
+              <Modal
+                modalComponent={
+                  <ClickMenuModal setModalContent={setModalContent} />
+                }
+              />
+            )}
             {modalContent === "edit" && (
               <Modal
                 modalComponent={
-                  <EditSubscriptionsModal setShowModal={setShowModal} selectedSub={selectedSub} />
+                  <EditSubscriptionsModal
+                    setShowModal={setShowModal}
+                    selectedSub={selectedSub}
+                  />
+                }
+              />
+            )}
+            {modalContent === "delete" && (
+              <Modal
+                modalComponent={
+                  <DeleteConfirmationModal
+                    setShowModal={setShowModal}
+                    setSelectedSub={setSelectedSub}
+                    selectedSub={selectedSub}
+                  />
                 }
               />
             )}

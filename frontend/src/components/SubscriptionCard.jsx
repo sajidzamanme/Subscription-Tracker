@@ -11,7 +11,7 @@ const SubscriptionCard = ({ subscription }) => {
           bg-[#758694] rounded-lg p-4"
       onClick={() => {
         setSelectedSub(subscription);
-        setModalContent("edit");
+        setModalContent("clickMenu");
         setShowModal(true);
       }}
     >
