@@ -4,7 +4,7 @@ import SubscriptionList from "../components/SubscriptionList";
 import { useOutletContext } from "react-router";
 
 const HomeView = () => {
-  const { setShowModal } = useOutletContext();
+  const { setShowModal, setModalContent } = useOutletContext();
 
   return (
     <div
@@ -18,7 +18,10 @@ const HomeView = () => {
         classList={
           "w-full max-w-xl h-[3rem] bg-[#758694] rounded-lg text-white text-3xl font-bold"
         }
-        handleClick={() => setShowModal(true)}
+        handleClick={() => {
+          setModalContent("add");
+          setShowModal(true);
+        }}
       />
 
       <SubscriptionList />

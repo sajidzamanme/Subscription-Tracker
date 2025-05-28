@@ -3,16 +3,18 @@ import NavBar from "../components/Navbar";
 import Modal from "../components/Modal";
 import AddSubsciptionsModal from "../components/AddSubsciptionsModal";
 import { useState } from "react";
+import EditSubscriptionsModal from "../components/EditSubscriptionsModal";
 
 const MainLayout = () => {
   const [showModal, setShowModal] = useState(false);
+  const [modalContent, setModalContent] = useState("add");
 
   return (
     <div className="h-dvh w-full">
       <NavBar />
 
       <main className="h-[calc(100%-4rem)] w-full">
-        <Outlet context={{ setShowModal }} />
+        <Outlet context={{ setShowModal, setModalContent }} />
       </main>
 
       {showModal && (
@@ -22,11 +24,20 @@ const MainLayout = () => {
             onClick={() => setShowModal(false)}
           ></div>
           <div className="z-50">
-            <Modal
-              modalComponent={
-                <AddSubsciptionsModal setShowModal={setShowModal} />
-              }
-            />
+            {modalContent === "add" && (
+              <Modal
+                modalComponent={
+                  <AddSubsciptionsModal setShowModal={setShowModal} />
+                }
+              />
+            )}
+            {modalContent === "edit" && (
+              <Modal
+                modalComponent={
+                  <EditSubscriptionsModal setShowModal={setShowModal} />
+                }
+              />
+            )}
           </div>
         </div>
       )}

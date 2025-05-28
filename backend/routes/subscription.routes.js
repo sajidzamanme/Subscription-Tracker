@@ -27,10 +27,6 @@ subscriptionRouter.delete("/:id", (req, res) => {
 
 subscriptionRouter.get("/user/:id", getUserSubscription); // add authorize middleware
 
-subscriptionRouter.post("/:id/cancel", (req, res) => {
-  res.send({ title: "CANCEL subscriptions" });
-});
-
 subscriptionRouter.get("/upcoming-renewals", (req, res) => {
   res.send({ title: "GET upcoming renewals" });
 });
