@@ -18,12 +18,15 @@ const LogInPage = () => {
     password: "",
   });
 
+  const [errorText, setErrorText] = useState(null);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       const response = await axios.post(`${API}/auth/sign-in`, formData);
+      setErrorText(null);
       const user = response.data.data.user;
       if (response.data.success) {
         setUser({ id: user._id, name: user.name, email: user.email });
@@ -35,6 +38,11 @@ const LogInPage = () => {
         navigate("/");
       }
     } catch (error) {
+      if (error.status === 404) {
+        setErrorText("User doesn't exists!");
+      } else if (error.status === 401) {
+        setErrorText("Email and Password doesn't match!");
+      }
       console.log(error);
     }
   };
@@ -45,13 +53,13 @@ const LogInPage = () => {
         <form
           id="loginForm"
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 py-6 px-2 items-start justify-start"
+          className="w-full flex flex-col gap-5 py-6 px-2 items-start justify-start"
         >
           <h1 className="self-center text-[#405D72] text-3xl font-bold py-7">
             Login Your Account
           </h1>
 
-          <div className="w-full max-w-[20rem] flex flex-col gap-3">
+          <div className="w-full max-w-[20rem] flex flex-col gap-3 px-3">
             <input
               type="email"
               value={formData.email}
@@ -77,6 +85,12 @@ const LogInPage = () => {
               }
             />
           </div>
+
+          {errorText !== null && (
+            <h1 className="text-sm text-red-500 font-medium self-center text-center">
+              {errorText}
+            </h1>
+          )}
 
           <div className="w-full flex flex-col gap-2 justify-center items-center pb-8">
             <CustomBtn

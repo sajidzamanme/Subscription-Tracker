@@ -1,11 +1,15 @@
+import mongoose from "mongoose";
 import Subscription from "../models/subscription.model.js";
 
 export const createSubscription = async (req, res, next) => {
   try {
-    const subscription = await Subscription.create({
-      ...req.body,
-      user: req.user._id,
-    });
+    // If following Authorization
+    // const subscription = await Subscription.create({
+    //   ...req.body,
+    //   user: req.user._id,
+    // });
+
+    const subscription = await Subscription.create(req.body);
 
     res.status(201).json({
       success: true,
@@ -31,6 +35,7 @@ export const getAllSubscription = async (req, res, next) => {
 
 export const getUserSubscription = async (req, res, next) => {
   try {
+    // If following Authorization
     // if (req.user.id !== req.params.id) {
     //   const error = new Error("You are not the owner of this account");
     //   error.statusCode = 401;
@@ -43,6 +48,49 @@ export const getUserSubscription = async (req, res, next) => {
       success: true,
       data: userSubscriptions,
     });
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const editUserSubscription = async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const error = new Error("SubscriptionID not valid");
+      error.status = 404;
+      throw error;
+    }
+
+    const updatedSub = await Subscription.findByIdAndUpdate(id, req.body, {new: true});
+
+    res.status(200).json({
+      success: true,
+      message: "Subscription updated Successfully",
+      data: updatedSub,
+    })
+  } catch (error) {
+    next(error);
+  }
+}
+
+export const deleteUserSubscription = async (req, res, next) => {
+  const id = req.params.id;
+
+  try {
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const error = new Error("SubscriptionID not valid");
+      error.status = 404;
+      throw error;
+    }
+
+    await Subscription.findByIdAndDelete(id);
+
+    res.status(200).json({
+      success: true,
+      message: "Subscription deleted successfully"
+    })
   } catch (error) {
     next(error);
   }

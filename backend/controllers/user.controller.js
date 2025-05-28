@@ -68,6 +68,8 @@ export const updateUser = async (req, res, next) => {
 };
 
 export const deleteUser = async (req, res, next) => {
+  // Implement deleting only with authorization
+  
   const { id } = req.params;
 
   try {

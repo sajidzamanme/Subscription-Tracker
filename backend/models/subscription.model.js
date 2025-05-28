@@ -15,7 +15,7 @@ const subscriptionSchema = new mongoose.Schema(
     },
     currency: {
       type: String,
-      enum: ["TK", "USA", "EUR"],
+      enum: ["TK", "USD", "EUR"],
       default: "TK",
     },
     frequency: {
@@ -65,20 +65,20 @@ const subscriptionSchema = new mongoose.Schema(
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: 'User',
+      ref: "User",
       required: true,
       index: true,
-    }
+    },
   },
   { timestamps: true }
 );
 
-subscriptionSchema.pre('save', function (next) {
+subscriptionSchema.pre("save", function (next) {
   if (!this.startDate) {
     this.startDate = new Date();
   }
-  
-  if(!this.renewalDate) {
+
+  if (!this.renewalDate) {
     const renewalPeriods = {
       daily: 1,
       weekly: 7,
@@ -87,16 +87,18 @@ subscriptionSchema.pre('save', function (next) {
     };
 
     this.renewalDate = new Date(this.startDate);
-    this.renewalDate.setDate(this.renewalDate.getDate() + renewalPeriods[this.frequency]);
+    this.renewalDate.setDate(
+      this.renewalDate.getDate() + renewalPeriods[this.frequency]
+    );
   }
 
-  if(this.renewalDate < new Date()) {
-    this.status = 'expired';
+  if (this.renewalDate < new Date()) {
+    this.status = "expired";
   }
 
   next();
 });
 
-const Subscription = mongoose.model('Subscription', subscriptionSchema);
+const Subscription = mongoose.model("Subscription", subscriptionSchema);
 
 export default Subscription;

@@ -10,6 +10,8 @@ const SignUpPage = () => {
     password: "",
   });
 
+  const [userExistsError, setUserExistsError] = useState(false);
+
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -19,27 +21,30 @@ const SignUpPage = () => {
         "http://localhost:5500/api/v1/auth/sign-up",
         formData
       );
-      console.log(response);
+      setUserExistsError(false);
       setFormData({ name: "", email: "", password: "" });
       navigate("/login");
     } catch (error) {
+      if (error.status === 409) {
+        setUserExistsError(true);
+      }
       console.log(error);
     }
   };
 
   return (
     <div className="h-full w-full flex flex-col justify-center items-center">
-      <div className="bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
+      <section className="w-[93%] max-w-xs bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
         <form
           id="signupForm"
           onSubmit={handleSubmit}
-          className="flex flex-col gap-5 p-6 items-start justify-start"
+          className="w-full flex flex-col gap-5 py-6 px-2 items-start justify-start"
         >
           <h1 className="self-center text-[#405D72] text-3xl font-bold py-7">
             Create a Account
           </h1>
 
-          <div className="w-[20rem] flex flex-col gap-3">
+          <div className="w-full max-w-[20rem] flex flex-col gap-3 px-3">
             <input
               type="text"
               value={formData.name}
@@ -78,6 +83,12 @@ const SignUpPage = () => {
             />
           </div>
 
+          {userExistsError && (
+            <h1 className="text-sm text-red-500 font-medium self-center text-center">
+              Account with this email already exists
+            </h1>
+          )}
+
           <div className="w-full flex flex-col gap-2 justify-center items-center pb-8">
             <CustomBtn
               label="Create"
@@ -96,7 +107,7 @@ const SignUpPage = () => {
             </h1>
           </div>
         </form>
-      </div>
+      </section>
     </div>
   );
 };
