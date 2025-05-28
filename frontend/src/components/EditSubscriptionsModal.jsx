@@ -6,35 +6,35 @@ import useSubscriptionsStore from "../stores/useSubscriptionsStore";
 
 const API = "http://localhost:5500/api/v1";
 
-const EditSubscriptionsModal = ({ setShowModal }) => {
+const EditSubscriptionsModal = ({ setShowModal, selectedSub }) => {
   const { user } = useUserStore();
   const { setSubscriptions } = useSubscriptionsStore();
-
+  console.log(selectedSub);
   const [formData, setFormData] = useState({
-    name: "",
-    price: "",
-    currency: "",
-    frequency: "",
-    category: "",
-    payment: "",
+    name: selectedSub.name,
+    price: selectedSub.price,
+    currency: selectedSub.currency,
+    frequency: selectedSub.frequency,
+    category: selectedSub.category,
+    payment: selectedSub.payment,
     //startDate: "",
-    user: null,
+    user: selectedSub.user,
   });
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post(`${API}/subscriptions`, {
+      const response = await axios.put(`${API}/subscriptions/${selectedSub._id}`, {
         ...formData,
         price: parseFloat(formData.price),
-        user: user.id,
       });
+
       if (response.data.success) {
         setShowModal(false);
         const res = await axios.get(`${API}/subscriptions/user/${user.id}`);
         setSubscriptions(res.data.data);
       } else {
-        const error = Error("Couldn't create Subscription");
+        const error = Error("Couldn't edit subscription");
         error.status = 400;
         throw error;
       }

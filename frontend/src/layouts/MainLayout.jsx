@@ -8,13 +8,14 @@ import EditSubscriptionsModal from "../components/EditSubscriptionsModal";
 const MainLayout = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalContent, setModalContent] = useState("add");
+  const [selectedSub, setSelectedSub] = useState(null);
 
   return (
     <div className="h-dvh w-full">
       <NavBar />
 
       <main className="h-[calc(100%-4rem)] w-full">
-        <Outlet context={{ setShowModal, setModalContent }} />
+        <Outlet context={{ setShowModal, setModalContent, setSelectedSub }} />
       </main>
 
       {showModal && (
@@ -34,7 +35,7 @@ const MainLayout = () => {
             {modalContent === "edit" && (
               <Modal
                 modalComponent={
-                  <EditSubscriptionsModal setShowModal={setShowModal} />
+                  <EditSubscriptionsModal setShowModal={setShowModal} selectedSub={selectedSub} />
                 }
               />
             )}
