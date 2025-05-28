@@ -27,41 +27,13 @@ const MainLayout = () => {
             onClick={() => setShowModal(false)}
           ></div>
           <div className="z-50">
-            {modalContent === "add" && (
-              <Modal
-                modalComponent={
-                  <AddSubsciptionsModal setShowModal={setShowModal} />
-                }
-              />
-            )}
-            {modalContent === "clickMenu" && (
-              <Modal
-                modalComponent={
-                  <ClickMenuModal setModalContent={setModalContent} />
-                }
-              />
-            )}
-            {modalContent === "edit" && (
-              <Modal
-                modalComponent={
-                  <EditSubscriptionsModal
-                    setShowModal={setShowModal}
-                    selectedSub={selectedSub}
-                  />
-                }
-              />
-            )}
-            {modalContent === "delete" && (
-              <Modal
-                modalComponent={
-                  <DeleteConfirmationModal
-                    setShowModal={setShowModal}
-                    setSelectedSub={setSelectedSub}
-                    selectedSub={selectedSub}
-                  />
-                }
-              />
-            )}
+            <Modal
+              modalContent={modalContent}
+              setModalContent={setModalContent}
+              setShowModal={setShowModal}
+              selectedSub={selectedSub}
+              setSelectedSub={setSelectedSub}
+            />
           </div>
         </div>
       )}

@@ -19,9 +19,9 @@ subscriptionRouter.get("/:id", (req, res) => {
 
 subscriptionRouter.post("/", createSubscription); // add authorize middleware
 
-subscriptionRouter.put("/:id", editUserSubscription);
+subscriptionRouter.put("/:id", editUserSubscription); // add authorize middleware
 
-subscriptionRouter.delete("/:id", deleteUserSubscription);
+subscriptionRouter.delete("/:id", deleteUserSubscription); // add authorize middleware
 
 subscriptionRouter.get("/user/:id", getUserSubscription); // add authorize middleware
 
