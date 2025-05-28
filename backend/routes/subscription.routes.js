@@ -2,6 +2,7 @@ import { Router } from "express";
 import authorize from "../middlewares/auth.middleware.js";
 import {
   createSubscription,
+  deleteUserSubscription,
   editUserSubscription,
   getAllSubscription,
   getUserSubscription,
@@ -20,9 +21,7 @@ subscriptionRouter.post("/", createSubscription); // add authorize middleware
 
 subscriptionRouter.put("/:id", editUserSubscription);
 
-subscriptionRouter.delete("/:id", (req, res) => {
-  res.send({ title: "DELETE subscriptions" });
-});
+subscriptionRouter.delete("/:id", deleteUserSubscription);
 
 subscriptionRouter.get("/user/:id", getUserSubscription); // add authorize middleware
 
