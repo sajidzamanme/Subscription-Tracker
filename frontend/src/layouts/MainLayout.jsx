@@ -22,7 +22,7 @@ const MainLayout = () => {
             className="z-40 fixed top-0 h-full w-full bg-black opacity-20"
             onClick={() => setShowModal(false)}
           ></div>
-          <div className="z-50">
+          <div className="z-50 w-[95%] max-w-[22rem]">
             <Modal
               modalContent={modalContent}
               setModalContent={setModalContent}

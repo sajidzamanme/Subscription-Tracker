@@ -44,18 +44,17 @@ const AddSubsciptionsModal = ({ setShowModal }) => {
   };
 
   return (
-    <div className="bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
+    <div className="w-full bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
       <form
         id="signupForm"
         onSubmit={handleSubmit}
-        className="flex flex-col gap-5 p-6 items-start justify-start"
+        className="w-full flex flex-col gap-5 p-6 items-start justify-start"
       >
         <h1 className="self-center text-[#405D72] text-3xl font-bold py-2">
           Add a Subscription
         </h1>
 
-        {/* handle width */}
-        <div className="w-[20rem] flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3">
           <input
             type="text"
             value={formData.name}

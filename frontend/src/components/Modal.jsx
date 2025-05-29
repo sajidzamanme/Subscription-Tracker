@@ -12,7 +12,7 @@ const Modal = ({
   setSelectedSub,
 }) => {
   return (
-    <>
+    <div className="w-full">
       {modalContent === "add" && (
         <AddSubsciptionsModal setShowModal={setShowModal} />
       )}
@@ -35,7 +35,7 @@ const Modal = ({
       {modalContent === "user" && (
         <UserDetailsModal setShowModal={setShowModal} />
       )}
-    </>
+    </div>
   );
 };
 

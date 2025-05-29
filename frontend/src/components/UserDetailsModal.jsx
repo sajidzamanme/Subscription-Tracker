@@ -25,17 +25,17 @@ const UserDetailsModal = ({ setShowModal }) => {
   };
 
   return (
-    <div className="bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
+    <div className="w-full bg-[#F7E7DC] shadow-lg rounded-xl flex flex-col items-center justify-start">
       <div
         id="userDetails"
-        className="flex flex-col gap-5 p-6 items-start justify-start"
+        className="w-full flex flex-col gap-5 py-6 px-3 items-start justify-start"
       >
         <h1 className="self-center text-[#405D72] text-3xl font-bold py-2">
           User Details
         </h1>
 
         {/* handle width */}
-        <div className="w-[20rem] flex flex-col gap-3">
+        <div className="w-full flex flex-col gap-3">
           <div className="flex flex-row justify-between items-center">
             <div className="px-3">
               <FaUser className="size-5" />
