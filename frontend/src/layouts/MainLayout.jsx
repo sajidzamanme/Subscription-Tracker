@@ -1,11 +1,7 @@
 import { Outlet } from "react-router";
 import NavBar from "../components/Navbar";
 import Modal from "../components/Modal";
-import AddSubsciptionsModal from "../components/AddSubsciptionsModal";
 import { useState } from "react";
-import EditSubscriptionsModal from "../components/EditSubscriptionsModal";
-import ClickMenuModal from "../components/ClickMenuModal";
-import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 const MainLayout = () => {
   const [showModal, setShowModal] = useState(false);

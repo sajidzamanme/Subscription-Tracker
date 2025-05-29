@@ -2,6 +2,7 @@ import AddSubsciptionsModal from "./AddSubsciptionsModal";
 import ClickMenuModal from "./ClickMenuModal";
 import DeleteConfirmationModal from "./DeleteConfirmationModal";
 import EditSubscriptionsModal from "./EditSubscriptionsModal";
+import UserDetailsModal from "./UserDetailsModal";
 
 const Modal = ({
   modalContent,
@@ -30,6 +31,9 @@ const Modal = ({
           setSelectedSub={setSelectedSub}
           selectedSub={selectedSub}
         />
+      )}
+      {modalContent === "user" && (
+        <UserDetailsModal setShowModal={setShowModal} />
       )}
     </>
   );

@@ -8,10 +8,10 @@ const userRouter = Router();
 
 userRouter.get("/", authorize, checkAdmin, getUsers);
 
-userRouter.get("/:id", authorize, getUser);
+userRouter.get("/:id", authorize, getUser);  // add authorize middleware
 
-userRouter.put("/:id", authorize, updateUser);
+userRouter.put("/:id", authorize, updateUser);  // add authorize middleware
 
-userRouter.delete("/:id", authorize, deleteUser);
+userRouter.delete("/:id", deleteUser);  // add authorize middleware
 
 export default userRouter;
