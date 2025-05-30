@@ -1,3 +1,4 @@
+import { useOutletContext } from "react-router";
 import useSubscriptionsStore from "../stores/useSubscriptionsStore";
 import useUserStore from "../stores/useUserStore";
 
@@ -5,10 +6,18 @@ const DashViewHome = () => {
   const { user } = useUserStore();
   const { subscriptions } = useSubscriptionsStore();
 
+  const { setShowModal, setModalContent} = useOutletContext();
+
+  const handleClick = () => {
+    setModalContent("user");
+    setShowModal(true);
+  };
+
   return (
     <section
       id="dashViewHome"
       className="w-full max-w-xl h-[6rem] flex flex-row items-center justify-between bg-[#758694] rounded-xl p-4"
+      onClick={handleClick}
     >
       {/* Add ... if name is too long */}
       <div className="flex flex-col items-start justify-center">

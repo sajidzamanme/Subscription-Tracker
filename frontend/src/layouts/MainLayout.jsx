@@ -1,11 +1,7 @@
 import { Outlet } from "react-router";
 import NavBar from "../components/Navbar";
 import Modal from "../components/Modal";
-import AddSubsciptionsModal from "../components/AddSubsciptionsModal";
 import { useState } from "react";
-import EditSubscriptionsModal from "../components/EditSubscriptionsModal";
-import ClickMenuModal from "../components/ClickMenuModal";
-import DeleteConfirmationModal from "../components/DeleteConfirmationModal";
 
 const MainLayout = () => {
   const [showModal, setShowModal] = useState(false);
@@ -13,10 +9,10 @@ const MainLayout = () => {
   const [selectedSub, setSelectedSub] = useState(null);
 
   return (
-    <div className="h-dvh w-full">
+    <div className="h-full w-full">
       <NavBar />
 
-      <main className="h-[calc(100%-4rem)] w-full">
+      <main className="h-[calc(100dvh-4rem)] w-full">
         <Outlet context={{ setShowModal, setModalContent, setSelectedSub }} />
       </main>
 
@@ -26,42 +22,14 @@ const MainLayout = () => {
             className="z-40 fixed top-0 h-full w-full bg-black opacity-20"
             onClick={() => setShowModal(false)}
           ></div>
-          <div className="z-50">
-            {modalContent === "add" && (
-              <Modal
-                modalComponent={
-                  <AddSubsciptionsModal setShowModal={setShowModal} />
-                }
-              />
-            )}
-            {modalContent === "clickMenu" && (
-              <Modal
-                modalComponent={
-                  <ClickMenuModal setModalContent={setModalContent} />
-                }
-              />
-            )}
-            {modalContent === "edit" && (
-              <Modal
-                modalComponent={
-                  <EditSubscriptionsModal
-                    setShowModal={setShowModal}
-                    selectedSub={selectedSub}
-                  />
-                }
-              />
-            )}
-            {modalContent === "delete" && (
-              <Modal
-                modalComponent={
-                  <DeleteConfirmationModal
-                    setShowModal={setShowModal}
-                    setSelectedSub={setSelectedSub}
-                    selectedSub={selectedSub}
-                  />
-                }
-              />
-            )}
+          <div className="z-50 w-[95%] max-w-[22rem]">
+            <Modal
+              modalContent={modalContent}
+              setModalContent={setModalContent}
+              setShowModal={setShowModal}
+              selectedSub={selectedSub}
+              setSelectedSub={setSelectedSub}
+            />
           </div>
         </div>
       )}
