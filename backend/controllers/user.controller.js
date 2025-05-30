@@ -17,13 +17,22 @@ export const getUsers = async (req, res, next) => {
 
 export const getUser = async (req, res, next) => {
   try {
-    const {password, ...user} = req.user.toObject();
+    // const { password, ...user } = req.user.toObject();
 
-    if (!user) {
-      const error = new Error("User not found");
+    // if (!user) {
+    //   const error = new Error("User not found");
+    //   error.statusCode = 404;
+    //   throw error;
+    // }
+
+    const { id } = req.params;
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      const error = new Error("User doesn't exist");
       error.statusCode = 404;
       throw error;
     }
+
+    const user = await User.findById(id);
 
     res.status(200).json({
       success: true,
@@ -43,16 +52,19 @@ export const updateUser = async (req, res, next) => {
       throw error;
     }
 
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(req.body.password, salt);
+    console.log(req.body);
+    if (req.body.password) {
+      const salt = await bcrypt.genSalt(10);
+      const hashedPassword = await bcrypt.hash(req.body.password, salt);
 
-    req.body = { ...req.body, password: hashedPassword };
+      req.body = { ...req.body, password: hashedPassword };
+    }
 
     const updatedUser = await User.findByIdAndUpdate(id, req.body, {
       new: true,
     });
 
-    if (!updateUser) {
+    if (!updatedUser) {
       const error = new Error("Updated user not made");
       error.statusCode = 400;
       throw error;
@@ -69,7 +81,7 @@ export const updateUser = async (req, res, next) => {
 
 export const deleteUser = async (req, res, next) => {
   // Implement deleting only with authorization
-  
+
   const { id } = req.params;
 
   try {

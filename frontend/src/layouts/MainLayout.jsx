@@ -12,7 +12,7 @@ const MainLayout = () => {
     <div className="h-full w-full">
       <NavBar />
 
-      <main className="h-full w-full">
+      <main className="h-[calc(100dvh-4rem)] w-full">
         <Outlet context={{ setShowModal, setModalContent, setSelectedSub }} />
       </main>
 

@@ -50,7 +50,7 @@ const AddSubsciptionsModal = ({ setShowModal }) => {
         formData={formData}
         setFormData={setFormData}
         handleSubmit={handleSubmit}
-        label="Add a Subscription"
+        label="Add Subscription"
       />
     </div>
   );
