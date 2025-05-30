@@ -9,10 +9,10 @@ const MainLayout = () => {
   const [selectedSub, setSelectedSub] = useState(null);
 
   return (
-    <div className="h-dvh w-full">
+    <div className="h-full w-full">
       <NavBar />
 
-      <main className="h-[calc(100%-4rem)] w-full">
+      <main className="h-full w-full">
         <Outlet context={{ setShowModal, setModalContent, setSelectedSub }} />
       </main>
 
